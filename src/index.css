@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+    @apply bg-indigo-600 rounded-3xl;
+}
+.selected {
+    @apply font-medium text-white;
+}
+.slide-left {
+    @apply left-0 right-[100px];
+}
+.slide-right {
+    @apply left-[112px] right-0;
+}
