@@ -1,9 +1,10 @@
 import './App.css'
+import Connexion from "./pages/connexion";
 
 function App() {
   return (
     <>
-    <h1>Hello world</h1>
+    <Connexion></Connexion>
     </>
   )
 }
