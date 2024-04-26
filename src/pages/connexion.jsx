@@ -1,4 +1,5 @@
-import Login from '../login'
+import Login from '../components/login'
+import Signup from '../components/signup'
 import { useState } from "react";
 
 function Connexion() {
@@ -8,7 +9,7 @@ function Connexion() {
       <div className="h-full bg-gradient-to-br from-blue-100 to-indigo-200 flex justify-center items-center">
         <div className="w-2/3 h-[80vh] relative rounded-xl bg-white overflow-hidden shadow-2xl  flex">
           <div className="absolute top-0 left-0 right-0 h-9 bg-gradient-to-br from-blue-400 to-indigo-700 z-0"></div>
-          <div className="w-[45%] z-[2] h-full bg-gradient-to-br p-3 text-white flex items-center from-blue-400 to-indigo-600 rounded-br-[40px]">
+          <div className="w-[45%] z-[2] h-full bg-gradient-to-br p-5 text-white flex items-center from-blue-400 to-indigo-600 rounded-br-[40px]">
             {side === "slide-left" ? (
               <div>
                 <h2 className="font-semibold text-center text-xl">
@@ -23,7 +24,7 @@ function Connexion() {
               </div>
             )}
           </div>
-          <div className="h-full z-[2] w-full relative overflow-hidden bg-white rounded-tl-[38px] p-3">
+          <div className="h-full z-[2] w-full relative overflow-hidden bg-white rounded-tl-[38px] p-4">
             <div className="flex flex-col items-center">
               <div className="border w-fit overflow-hidden relative border-gray-300 flex rounded-3xl">
                 <div
@@ -31,7 +32,7 @@ function Connexion() {
                 ></div>
                 <button
                   className={`px-3 relative mx-1 py-2 ${
-                    side === "slide-right" ? "" : "selected"
+                    side === "slide-left" ? "selected" : ""
                   }`}
                   onClick={() => {
                     setSide("slide-left");
@@ -56,9 +57,11 @@ function Connexion() {
                 }`}
               >
                 <div className={`relative min-w-full mx-3`}>
-                    <Login></Login>
+                    <Login setSide={setSide}></Login>
                 </div>
-                <div className={`relative min-w-full mx-3`}></div>
+                <div className={`relative min-w-full mx-2`}>
+                    <Signup setSide={setSide}></Signup>
+                </div>
               </div>
             </div>
           </div>

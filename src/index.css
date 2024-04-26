@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn {
-    @apply bg-indigo-600 rounded-3xl;
+    @apply bg-blue-800 rounded-3xl;
 }
 .selected {
     @apply font-medium text-white;
