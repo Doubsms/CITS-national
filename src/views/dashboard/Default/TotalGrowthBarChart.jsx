@@ -18,6 +18,7 @@ import { gridSpacing } from '../../../store/constant';
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
 
+
 const status = [
   {
     value: 'today',
@@ -45,7 +46,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   const darkLight = theme.palette.dark.light;
   const grey200 = theme.palette.grey[200];
   const grey500 = theme.palette.grey[500];
-
+  
   const primary200 = theme.palette.primary[200];
   const primaryDark = theme.palette.primary.dark;
   const secondaryMain = theme.palette.secondary.main;
