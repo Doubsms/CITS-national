@@ -1,5 +1,6 @@
 import Login from "../components/login";
 import Signup from "../components/signup";
+import "./page.css"
 import { useState } from "react";
 
 function Connexion() {
