@@ -1,7 +1,7 @@
-import { Chip, Radio,Input,Textarea,Button } from "@material-tailwind/react";
+import { Chip, Radio, Input, Textarea, Button } from "@material-tailwind/react";
 import { useState } from "react";
 
-function Signup({setSide}) {
+function Signup({ setSide }) {
   let [selectedValue, setSelectedValue] = useState("patient");
 
   function handleChange(newWords) {
@@ -9,7 +9,6 @@ function Signup({setSide}) {
   }
   return (
     <div>
-
       <div className="flex items-center justify-center my-3">
         <p className="mr-2 font-medium">Type de compte : </p>
         <div className="flex">
@@ -71,33 +70,79 @@ function Signup({setSide}) {
             }
           ></Chip>
         </div>
-   
       </div>
       <h1 className="text-center font-medium my-2 text-[17px] bg-gradient-to-br from-blue-400 to-indigo-600 text-transparent bg-clip-text">
         Entrer vos informations
       </h1>
       {selectedValue === "patient" ? (
         <div>
-            <div className="w-[90%] py-2 grid gap-6 grid-cols-2">
-            <Input label="nom d'utilisateur" required type="name" placeholder="Ex: Maurice Edgard" color="indigo"></Input>
-            <Input label="Adrese email" type="email" required placeholder="Ex: ngoufackedgard1@gmail.com" color="indigo"></Input>
-            <Input label="Date de naissance" required type="date" placeholder="Ex: 08/01/2006" color="indigo"></Input>
-            <Input label="Lieu de residence actuel" required type="place" placeholder="Ex: Dtshang" color="indigo"></Input>
-            <Input required label="Numero de telephone" type="number" placeholder="Ex: 652 82 56 35" color="indigo"></Input>
-            <Input label="Numero de secours" type="number" placeholder="Ex: 695 90 32 41" color="indigo"></Input>
+          <div className="w-[90%] py-2 grid gap-6 grid-cols-2">
+            <Input
+              label="nom d'utilisateur"
+              required
+              type="name"
+              placeholder="Ex: Maurice Edgard"
+              color="indigo"
+            ></Input>
+            <Input
+              label="Adrese email"
+              type="email"
+              required
+              placeholder="Ex: ngoufackedgard1@gmail.com"
+              color="indigo"
+            ></Input>
+            <Input
+              label="Date de naissance"
+              required
+              type="date"
+              placeholder="Ex: 08/01/2006"
+              color="indigo"
+            ></Input>
+            <Input
+              label="Lieu de residence actuel"
+              required
+              type="place"
+              placeholder="Ex: Dtshang"
+              color="indigo"
+            ></Input>
+            <Input
+              required
+              label="Numero de telephone"
+              type="number"
+              placeholder="Ex: 652 82 56 35"
+              color="indigo"
+            ></Input>
+            <Input
+              label="Numero de secours"
+              type="number"
+              placeholder="Ex: 695 90 32 41"
+              color="indigo"
+            ></Input>
+          </div>
+          <div className=" w-[90%] mt-2 ">
+            <Textarea
+              label="bibiographie"
+              type="text"
+              placeholder=""
+              className="h-[75px] w-full"
+              color="indigo"
+            ></Textarea>
+          </div>{" "}
         </div>
-<div className=" w-[90%] mt-2 ">
-<Textarea label="bibiographie" type="text" placeholder="" className="h-[75px] w-full" color="indigo"></Textarea>
-
-    </div>        </div>
       ) : selectedValue === "hopital" ? (
         <div>Hopital</div>
       ) : (
         <div>Personnel</div>
       )}
-       <div className="w-full">
-        <Button color="indigo" className="w-[90%]" onClick={()=>setSide("slide-left")}>S'enregistrer</Button>
-        </div>
+      <div className="w-full">
+        <Button
+          color="indigo"
+          className="w-[90%]"
+          onClick={() => setSide("slide-left")}
+        >
+          S'enregistrer
+        </Button>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import Login from '../components/login'
-import Signup from '../components/signup'
+import Login from "../components/login";
+import Signup from "../components/signup";
 import { useState } from "react";
 
 function Connexion() {
@@ -57,10 +57,10 @@ function Connexion() {
                 }`}
               >
                 <div className={`relative min-w-full mx-3`}>
-                    <Login setSide={setSide}></Login>
+                  <Login setSide={setSide}></Login>
                 </div>
                 <div className={`relative min-w-full mx-2`}>
-                    <Signup setSide={setSide}></Signup>
+                  <Signup setSide={setSide}></Signup>
                 </div>
               </div>
             </div>

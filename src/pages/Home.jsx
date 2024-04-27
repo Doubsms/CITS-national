@@ -1,13 +1,16 @@
 function Home() {
   return (
-    <section>
+    <div>
+      <nav>
       <aside>
       Home bar
       </aside>
+      </nav>
+
       <main>
         Dashboard
       </main>
-      </section>
+      </div>
   )
 }
 
