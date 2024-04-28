@@ -3,16 +3,16 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase, Card, Grid, InputAdornment, OutlinedInput, Popper } from '@mui/material';
+import { Avatar, Box, ButtonBase, Card, Grid, InputAdornment, OutlinedInput, Popper,TextField } from '@mui/material';
 
 // third-party
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // project imports
 import Transitions from '../../../../ui-component/extended/Transitions';
-
+import {PhotoCameraOutlined} from '@mui/icons-material';
 // assets
-import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
+import { IconAdjustmentsHorizontal, IconSearch, IconX,IconImageInPicture } from '@tabler/icons-react';
 import { shouldForwardProp } from '@mui/system';
 
 // styles
@@ -66,7 +66,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       id="input-search-header"
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      placeholder="Search"
+      placeholder="Rechercher un nom ou un identifiant"
       startAdornment={
         <InputAdornment position="start">
           <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
@@ -118,6 +118,12 @@ MobileSearch.propTypes = {
 const SearchSection = () => {
   const theme = useTheme();
   const [value, setValue] = useState('');
+  let [file,setFile]=useState([])
+  function handleChange(e) {
+    if (e.target.files.item(0) !== null) {
+      alert("fichier enregistré avec succes")
+    }
+  }
 
   return (
     <>
@@ -165,8 +171,9 @@ const SearchSection = () => {
         <OutlineInputStyle
           id="input-search-header"
           value={value}
+          
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Search"
+          placeholder="Rechercher par nom, identifiant ou code QR"
           startAdornment={
             <InputAdornment position="start">
               <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
@@ -175,8 +182,17 @@ const SearchSection = () => {
           endAdornment={
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: '12px' }}>
-                <HeaderAvatarStyle variant="rounded">
-                  <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                <HeaderAvatarStyle variant="rounded" sx={{
+                  position:"relative",
+                }}>
+                  <TextField type='file' size='small' onChange={(e)=>handleChange(e)} sx={{
+                    position:"absolute",
+                    bottom:0,
+                    zIndex:5,
+                   opacity:0
+                    
+                  }} ></TextField>
+                  <PhotoCameraOutlined stroke={1.5} size="1.3rem"/>
                 </HeaderAvatarStyle>
               </ButtonBase>
             </InputAdornment>

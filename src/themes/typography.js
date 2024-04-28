@@ -120,9 +120,9 @@ export default function themeTypography(theme) {
       fontSize: '1rem'
     },
     mediumAvatar: {
-      width: '34px',
-      height: '34px',
-      fontSize: '1.2rem'
+      width: '35px',
+      height: '35px',
+      fontSize: '1.1rem'
     },
     largeAvatar: {
       width: '44px',

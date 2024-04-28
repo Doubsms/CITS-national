@@ -6,12 +6,13 @@ import { useTheme } from '@mui/material/styles';
 import {
   Drawer,
   Fab,
-  FormControl,
-  FormControlLabel,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  List,
   Grid,
   IconButton,
-  Radio,
-  RadioGroup,
   Slider,
   Tooltip,
   Typography
@@ -26,6 +27,7 @@ import SubCard from '../../ui-component/cards/SubCard';
 import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from '../../store/actions';
 import { gridSpacing } from '../../store/constant';
 import AnimateButton from '../../ui-component/extended/AnimateButton';
+import { Opacity } from '@mui/icons-material';
 
 
 // concat 'px'
@@ -92,7 +94,7 @@ const Customization = () => {
   return (
     <>
       {/* toggle button */}
-      <Tooltip title="Live Customize">
+      <Tooltip title="Accès rapide">
         <Fab
           component="div"
           onClick={handleToggle}
@@ -131,49 +133,37 @@ const Customization = () => {
         <PerfectScrollbar component="div">
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
             <Grid item xs={12}>
-              {/* font family */}
-              <SubCard title="Font Family">
-                <FormControl>
-                  <RadioGroup
-                    aria-label="font-family"
-                    value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
-                    name="row-radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="Roboto"
-                      control={<Radio />}
-                      label="Roboto"
-                      sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
-                      }}
-                    />
-                    <FormControlLabel
-                      value="Poppins"
-                      control={<Radio />}
-                      label="Poppins"
-                      sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
-                      }}
-                    />
-                    <FormControlLabel
-                      value="Inter"
-                      control={<Radio />}
-                      label="Inter"
-                      sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
-                      }}
-                    />
-                  </RadioGroup>
-                </FormControl>
+              
+              <SubCard title="Fonctionnalités rapides">
+                  <List>
+                    <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }}>
+                      <ListItemText primary={<Typography variant="p">Enregister un patient</Typography>} />
+                    </ListItemButton>
+                    <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }}>
+                      <ListItemText primary={<Typography variant="p">Nouvelle consultation</Typography>} />
+                    </ListItemButton>
+                    <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }}>
+                      <ListItemText primary={<Typography variant="p">Modification rapide patient</Typography>} />
+                    </ListItemButton>
+                    <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }}>
+                      <ListItemText primary={<Typography variant="p">Informations d'un patient</Typography>} />
+                    </ListItemButton>
+                    <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }}>
+                      <ListItemText primary={<Typography variant="p">Changer de compte</Typography>} />
+                    </ListItemButton>
+                    
+                  </List>
               </SubCard>
             </Grid>
             <Grid item xs={12}>
               {/* border radius */}
-              <SubCard title="Border Radius">
+              <SubCard title="Taille de la police">
+                <Typography variant='body2' sx={{
+                  opacity:0.7,
+                  //fontSize:"13px"
+                }}>
+                  Pour les personnes myopes ou hypermetropes
+                </Typography>
                 <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
                   <Grid item>
                     <Typography variant="h6" color="secondary">

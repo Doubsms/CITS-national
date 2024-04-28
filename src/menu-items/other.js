@@ -12,20 +12,19 @@ const other = {
   children: [
     {
       id: 'sample-page',
-      title: 'Sample Page',
+      title: 'Medical AI',
       type: 'item',
-      url: '/sample-page',
+      url: '/ai',
       icon: icons.IconBrandChrome,
       breadcrumbs: false
     },
     {
       id: 'documentation',
-      title: 'Documentation',
+      title: "Centre d'aide et FAQ",
       type: 'item',
       url: 'https://codedthemes.gitbook.io/berry/',
       icon: icons.IconHelp,
       external: true,
-      target: true
     }
   ]
 };

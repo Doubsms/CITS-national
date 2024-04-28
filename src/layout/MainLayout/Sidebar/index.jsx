@@ -38,18 +38,12 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
         >
           <MenuList />
           <MenuCard />
-          <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label="3.2.3" disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
-          </Stack>
         </PerfectScrollbar>
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
           <MenuList />
           <MenuCard />
-          <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label="3.2.3" disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
-          </Stack>
         </Box>
       </MobileView>
     </>

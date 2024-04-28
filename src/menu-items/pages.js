@@ -1,38 +1,61 @@
 // assets
-import { IconKey } from '@tabler/icons-react';
+import { IconKey,IconUser } from '@tabler/icons-react';
 
 // constant
 const icons = {
-  IconKey
+  IconKey,
+  IconUser
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const pages = {
   id: 'pages',
-  title: 'Pages',
-  caption: 'Pages Caption',
+  title: 'Utilisateurs',
   type: 'group',
   children: [
     {
       id: 'authentication',
-      title: 'Authentication',
+      title: 'Authentification',
       type: 'collapse',
       icon: icons.IconKey,
 
       children: [
         {
           id: 'login3',
-          title: 'Login',
+          title: 'Connexion',
           type: 'item',
-          url: '/pages/login/login3',
+          url: '/connexion',
           target: true
         },
         {
           id: 'register3',
-          title: 'Register',
+          title: 'Enregistrement',
           type: 'item',
-          url: '/pages/register/register3',
+          url: '/connexion',
+          target: true
+        }
+      ]
+    },
+    {
+      id: 'authentication',
+      title: 'Informations',
+      type: 'collapse',
+      icon: icons.IconUser,
+
+      children: [
+        {
+          id: 'login3',
+          title: 'Information du profil',
+          type: 'item',
+          url: '/connexion',
+          target: true
+        },
+        {
+          id: 'register3',
+          title: 'Editer le profil',
+          type: 'item',
+          url: '/connexion',
           target: true
         }
       ]

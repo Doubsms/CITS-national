@@ -8,14 +8,14 @@ const icons = { IconDashboard };
 
 const dashboard = {
   id: 'dashboard',
-  title: 'Dashboard',
+  title: 'Informations generales',
   type: 'group',
   children: [
     {
       id: 'default',
-      title: 'Dashboard',
+      title: 'Tableau de bord',
       type: 'item',
-      url: '/dashboard/default',
+      url: '/dashboard',
       icon: icons.IconDashboard,
       breadcrumbs: false
     }

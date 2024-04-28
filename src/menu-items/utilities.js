@@ -1,68 +1,70 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons-react';
+import { IconTypography, IconPalette, IconShadow, IconWindmill ,IconEdit,IconRegistered,IconPencil, IconBook} from '@tabler/icons-react';
 
 // constant
 const icons = {
   IconTypography,
   IconPalette,
   IconShadow,
-  IconWindmill
+  IconWindmill,
+  IconEdit,
+  IconRegistered,
+  IconPencil,
+  IconBook
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
 const utilities = {
   id: 'utilities',
-  title: 'Utilities',
+  title: 'Actions',
   type: 'group',
   children: [
     {
       id: 'util-typography',
-      title: 'Typography',
+      title: 'Nouvelle consultation',
       type: 'item',
       url: '/utils/util-typography',
-      icon: icons.IconTypography,
+      icon: icons.IconEdit,
       breadcrumbs: false
     },
     {
       id: 'util-color',
-      title: 'Color',
+      title: 'Enregistrer un patient',
       type: 'item',
       url: '/utils/util-color',
-      icon: icons.IconPalette,
+      icon: icons.IconRegistered,
       breadcrumbs: false
     },
     {
       id: 'util-shadow',
-      title: 'Shadow',
+      title: 'Modifier un carnet',
       type: 'item',
       url: '/utils/util-shadow',
-      icon: icons.IconShadow,
+      icon: icons.IconPencil,
       breadcrumbs: false
     },
     {
       id: 'icons',
-      title: 'Icons',
+      title: 'Voir mon carnet',
       type: 'collapse',
-      icon: icons.IconWindmill,
+      icon: icons.IconBook,
       children: [
         {
           id: 'tabler-icons',
-          title: 'Tabler Icons',
+          title: 'Tout le carnet',
           type: 'item',
-          url: '/icons/tabler-icons',
+          url: '/carnet',
           breadcrumbs: false
         },
         {
           id: 'material-icons',
-          title: 'Material Icons',
+          title: 'Telecharger le carnet',
           type: 'item',
-          external: true,
-          target: '_blank',
-          url: 'https://mui.com/material-ui/material-icons/',
+          url: '/download',
           breadcrumbs: false
         }
-      ]
+      ] 
     }
   ]
 };

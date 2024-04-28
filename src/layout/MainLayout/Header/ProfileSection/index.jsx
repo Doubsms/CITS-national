@@ -111,17 +111,23 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={User1}
             sx={{
               ...theme.typography.mediumAvatar,
-              margin: '8px 0 8px 8px !important',
-              cursor: 'pointer'
+              margin: '8px 8px 8px !important',
+              cursor: 'pointer',
+          '&:hover': {
+            //color:theme.palette.primary.light,
+            backgroundColor:theme.palette.primary.light
+          }
+    
             }}
+            
             ref={anchorRef}
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
-            color="inherit"
-          />
+            color="inherit">
+              {"FM"}
+          </Avatar>
         }
         label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
         variant="outlined"
@@ -157,12 +163,12 @@ const ProfileSection = () => {
                   <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Good Morning,</Typography>
+                        <Typography variant="h4">Bonjour,</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Johne Doe
+                          Flash Mac
                         </Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Project Admin</Typography>
+                      <Typography variant="subtitle2">Etudiant et Designer</Typography>
                     </Stack>
                     <OutlinedInput
                       sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
@@ -197,23 +203,7 @@ const ProfileSection = () => {
                             <Grid item>
                               <Grid item container alignItems="center" justifyContent="space-between">
                                 <Grid item>
-                                  <Typography variant="subtitle1">Start DND Mode</Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Switch
-                                    color="primary"
-                                    checked={sdm}
-                                    onChange={(e) => setSdm(e.target.checked)}
-                                    name="sdm"
-                                    size="small"
-                                  />
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item>
-                              <Grid item container alignItems="center" justifyContent="space-between">
-                                <Grid item>
-                                  <Typography variant="subtitle1">Allow Notifications</Typography>
+                                  <Typography variant="subtitle1">Accepter les notifications d'alerte</Typography>
                                 </Grid>
                                 <Grid item>
                                   <Switch
@@ -221,6 +211,7 @@ const ProfileSection = () => {
                                     onChange={(e) => setNotification(e.target.checked)}
                                     name="sdm"
                                     size="small"
+                                   
                                   />
                                 </Grid>
                               </Grid>
@@ -253,7 +244,7 @@ const ProfileSection = () => {
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                          <ListItemText primary={<Typography variant="body2">Parametre du compte</Typography>} />
                         </ListItemButton>
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
@@ -267,17 +258,7 @@ const ProfileSection = () => {
                             primary={
                               <Grid container spacing={1} justifyContent="space-between">
                                 <Grid item>
-                                  <Typography variant="body2">Social Profile</Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Chip
-                                    label="02"
-                                    size="small"
-                                    sx={{
-                                      bgcolor: theme.palette.warning.dark,
-                                      color: theme.palette.background.default
-                                    }}
-                                  />
+                                  <Typography variant="body2">Profil</Typography>
                                 </Grid>
                               </Grid>
                             }
@@ -291,7 +272,9 @@ const ProfileSection = () => {
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
+                          <ListItemText primary={<Typography variant="body2">Deconnexion</Typography>} onClick={()=>{
+                            navigate("/connexion")
+                          }} />
                         </ListItemButton>
                       </List>
                     </Box>

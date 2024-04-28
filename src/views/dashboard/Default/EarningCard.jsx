@@ -125,16 +125,10 @@ const EarningCard = ({ isLoading }) => {
                       }}
                     >
                       <MenuItem onClick={handleClose}>
-                        <GetAppTwoToneIcon sx={{ mr: 1.75 }} /> Import Card
+                        <FileCopyTwoToneIcon sx={{ mr: 1.75 }} /> Copié les données
                       </MenuItem>
                       <MenuItem onClick={handleClose}>
-                        <FileCopyTwoToneIcon sx={{ mr: 1.75 }} /> Copy Data
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <PictureAsPdfTwoToneIcon sx={{ mr: 1.75 }} /> Export
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <ArchiveTwoToneIcon sx={{ mr: 1.75 }} /> Archive File
+                        <PictureAsPdfTwoToneIcon sx={{ mr: 1.75 }} /> Exporter
                       </MenuItem>
                     </Menu>
                   </Grid>
@@ -143,7 +137,7 @@ const EarningCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$500.00</Typography>
+                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>120 patients</Typography>
                   </Grid>
                   <Grid item>
                     <Avatar
@@ -167,7 +161,7 @@ const EarningCard = ({ isLoading }) => {
                     color: theme.palette.secondary[200]
                   }}
                 >
-                  Total Earning
+                  Nombre total de patients cette semaine
                 </Typography>
               </Grid>
             </Grid>

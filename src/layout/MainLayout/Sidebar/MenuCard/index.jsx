@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // material-ui
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Card,
@@ -13,40 +13,41 @@ import {
   ListItemAvatar,
   ListItemText,
   Typography,
-  linearProgressClasses
-} from '@mui/material';
+  linearProgressClasses,
+  Stack,
+} from "@mui/material";
 
 // assets
-import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
+import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined";
 
 // styles
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 30,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.primary.main
-  }
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 const CardStyle = styled(Card)(({ theme }) => ({
   background: theme.palette.primary.light,
-  marginBottom: '22px',
-  overflow: 'hidden',
-  position: 'relative',
-  '&:after': {
+  marginBottom: "22px",
+  overflow: "hidden",
+  position: "relative",
+  "&:after": {
     content: '""',
-    position: 'absolute',
-    width: '157px',
-    height: '157px',
+    position: "absolute",
+    width: "157px",
+    height: "157px",
     background: theme.palette.primary[200],
-    borderRadius: '50%',
-    top: '-105px',
-    right: '-96px'
-  }
+    borderRadius: "50%",
+    top: "-105px",
+    right: "-96px",
+  },
 }));
 
 // ==============================|| PROGRESS BAR WITH LABEL ||============================== //
@@ -60,11 +61,13 @@ function LinearProgressWithLabel({ value, ...others }) {
         <Grid container justifyContent="space-between">
           <Grid item>
             <Typography variant="h6" sx={{ color: theme.palette.primary[800] }}>
-              Progress
+              Etat de santé general
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="h6" color="inherit">{`${Math.round(value)}%`}</Typography>
+            <Typography variant="h6" color="inherit">{`${Math.round(
+              value
+            )}%`}</Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -76,7 +79,7 @@ function LinearProgressWithLabel({ value, ...others }) {
 }
 
 LinearProgressWithLabel.propTypes = {
-  value: PropTypes.number
+  value: PropTypes.number,
 };
 
 // ==============================|| SIDEBAR MENU Card ||============================== //
@@ -96,10 +99,10 @@ const MenuCard = () => {
                   ...theme.typography.commonAvatar,
                   ...theme.typography.largeAvatar,
                   color: theme.palette.primary.main,
-                  border: 'none',
+                  border: "none",
                   borderColor: theme.palette.primary.main,
-                  background: '#fff',
-                  marginRight: '12px'
+                  background: "#fff",
+                  marginRight: "12px",
                 }}
               >
                 <TableChartOutlinedIcon fontSize="inherit" />
@@ -108,15 +111,30 @@ const MenuCard = () => {
             <ListItemText
               sx={{ mt: 0 }}
               primary={
-                <Typography variant="subtitle1" sx={{ color: theme.palette.primary[800] }}>
-                  Get Extra Space
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: theme.palette.primary[800] }}
+                >
+                  Ma santé
                 </Typography>
               }
-              secondary={<Typography variant="caption"> 28/23 GB</Typography>}
+              secondary={
+                <Typography variant="caption"> 28 avril 2024 </Typography>
+              }
             />
           </ListItem>
         </List>
-        <LinearProgressWithLabel value={80} />
+        <LinearProgressWithLabel value={57} />
+        <Stack direction="row" justifyContent="space-between" mt={2} alignItems="items-center">
+            <Typography
+              variant="body2"
+              
+              sx={{ color: theme.palette.success.main }}
+            >
+              En cours de traitement
+            </Typography>
+            <Typography  sx={{ color: theme.palette.success.main,fontWeight:"bold" }} variant="body2"> oui </Typography>
+        </Stack>
       </CardContent>
     </CardStyle>
   );
