@@ -24,7 +24,7 @@ const utilities = {
       id: 'util-typography',
       title: 'Nouvelle consultation',
       type: 'item',
-      url: '/utils/util-typography',
+      url: '/newconsultation',
       icon: icons.IconEdit,
       breadcrumbs: false
     },
@@ -32,7 +32,7 @@ const utilities = {
       id: 'util-color',
       title: 'Enregistrer un patient',
       type: 'item',
-      url: '/utils/util-color',
+      url: '/saveconsultation',
       icon: icons.IconRegistered,
       breadcrumbs: false
     },
@@ -40,7 +40,7 @@ const utilities = {
       id: 'util-shadow',
       title: 'Modifier un carnet',
       type: 'item',
-      url: '/utils/util-shadow',
+      url: '/suivretraitement',
       icon: icons.IconPencil,
       breadcrumbs: false
     },
@@ -54,7 +54,7 @@ const utilities = {
           id: 'tabler-icons',
           title: 'Tout le carnet',
           type: 'item',
-          url: '/carnet',
+          url: '/infocarnet',
           breadcrumbs: false
         },
         {

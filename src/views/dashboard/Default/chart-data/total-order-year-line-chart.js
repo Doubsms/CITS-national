@@ -23,7 +23,7 @@ const chartData = {
     },
     yaxis: {
       min: 0,
-      max: 100
+      max: 250,
     },
     tooltip: {
       theme: 'dark',
@@ -31,7 +31,9 @@ const chartData = {
         enabled: false
       },
       x: {
-        show: false
+        
+        show: true,
+        title:"Semaine"
       },
       y: {
         title: 'Total Order'
@@ -43,8 +45,8 @@ const chartData = {
   },
   series: [
     {
-      name: 'series1',
-      data: [35, 44, 9, 54, 45, 66, 41, 69]
+      name: 'Semaine',
+      data: [85, 71, 100, 50, 60,]
     }
   ]
 };

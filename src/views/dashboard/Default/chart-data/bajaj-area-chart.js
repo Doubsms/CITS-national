@@ -17,6 +17,10 @@ const chartData = {
       curve: 'smooth',
       width: 1
     },
+    yaxis: {
+      min: 0,
+      max: 24
+    },
     tooltip: {
       fixed: {
         enabled: false
@@ -25,16 +29,18 @@ const chartData = {
         show: false
       },
       y: {
-        title: 'Ticket '
+        title: 'Heures',
       },
       marker: {
+        title:"Heure",
         show: false
       }
     }
   },
   series: [
     {
-      data: [0, 15, 10, 50, 30, 40, 25]
+      name: 'Heures',
+      data: [7, 8, 10, 15, 18, 23, 4]
     }
   ]
 };

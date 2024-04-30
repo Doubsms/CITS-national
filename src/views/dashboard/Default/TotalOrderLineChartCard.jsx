@@ -17,6 +17,7 @@ import ChartDataYear from './chart-data/total-order-year-line-chart';
 
 // assets
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import {HealthAndSafetyOutlined} from '@mui/icons-material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -92,7 +93,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                         mt: 1
                       }}
                     >
-                      <LocalMallOutlinedIcon fontSize="inherit" />
+                      <HealthAndSafetyOutlined fontSize="inherit" />
                     </Avatar>
                   </Grid>
                   <Grid item>
@@ -103,7 +104,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       sx={{ color: 'inherit' }}
                       onClick={(e) => handleChangeTime(e, true)}
                     >
-                      Month
+                      Semaine
                     </Button>
                     <Button
                       disableElevation
@@ -112,34 +113,23 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       sx={{ color: 'inherit' }}
                       onClick={(e) => handleChangeTime(e, false)}
                     >
-                      Year
+                      Mois
                     </Button>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item sx={{ mb: 0.75 }}>
                 <Grid container alignItems="center">
-                  <Grid item xs={6}>
+                  <Grid item xs={8}>
                     <Grid container alignItems="center">
                       <Grid item>
                         {timeValue ? (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$108</Typography>
+                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>150 patients</Typography>
                         ) : (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$961</Typography>
+                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>230 patients</Typography>
                         )}
                       </Grid>
-                      <Grid item>
-                        <Avatar
-                          sx={{
-                            ...theme.typography.smallAvatar,
-                            cursor: 'pointer',
-                            backgroundColor: theme.palette.primary[200],
-                            color: theme.palette.primary.dark
-                          }}
-                        >
-                          <ArrowDownwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
-                        </Avatar>
-                      </Grid>
+                     
                       <Grid item xs={12}>
                         <Typography
                           sx={{
@@ -148,12 +138,12 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                             color: theme.palette.primary[200]
                           }}
                         >
-                          Total Order
+                          En cours de traitement
                         </Typography>
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={4}>
                     {timeValue ? <Chart {...ChartDataMonth} /> : <Chart {...ChartDataYear} />}
                   </Grid>
                 </Grid>

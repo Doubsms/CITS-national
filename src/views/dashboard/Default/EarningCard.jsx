@@ -137,7 +137,7 @@ const EarningCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>120 patients</Typography>
+                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>85 patients</Typography>
                   </Grid>
                   <Grid item>
                     <Avatar
@@ -161,7 +161,7 @@ const EarningCard = ({ isLoading }) => {
                     color: theme.palette.secondary[200]
                   }}
                 >
-                  Nombre total de patients cette semaine
+                  Nombre total de patients devrant suivre un traitement aujourd'hui
                 </Typography>
               </Grid>
             </Grid>

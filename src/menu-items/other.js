@@ -14,7 +14,7 @@ const other = {
       id: 'sample-page',
       title: 'Medical AI',
       type: 'item',
-      url: '/ai',
+      url: '/medicalai',
       icon: icons.IconBrandChrome,
       breadcrumbs: false
     },
@@ -22,7 +22,7 @@ const other = {
       id: 'documentation',
       title: "Centre d'aide et FAQ",
       type: 'item',
-      url: 'https://codedthemes.gitbook.io/berry/',
+      url: '/aide',
       icon: icons.IconHelp,
       external: true,
     }

@@ -48,14 +48,14 @@ const pages = {
           id: 'login3',
           title: 'Information du profil',
           type: 'item',
-          url: '/connexion',
+          url: '/infoprofil',
           target: true
         },
         {
           id: 'register3',
           title: 'Editer le profil',
           type: 'item',
-          url: '/connexion',
+          url: '/editprofil',
           target: true
         }
       ]

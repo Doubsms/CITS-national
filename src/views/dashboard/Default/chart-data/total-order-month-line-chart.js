@@ -23,7 +23,7 @@ const chartData = {
     },
     yaxis: {
       min: 0,
-      max: 100
+      max: 150
     },
     tooltip: {
       theme: 'dark',
@@ -31,10 +31,12 @@ const chartData = {
         enabled: false
       },
       x: {
-        show: false
+        show: true,
+        title:"Jour"
       },
       y: {
-        title: 'Total Order'
+        show:true,
+        title: 'Nombre de patients'
       },
       marker: {
         show: false
@@ -43,8 +45,8 @@ const chartData = {
   },
   series: [
     {
-      name: 'series1',
-      data: [45, 66, 41, 89, 25, 44, 9, 54]
+      name: 'Patients :',
+      data: [25, 40, 21, 60, 15, 20, 33]
     }
   ]
 };

@@ -3,8 +3,93 @@ import google from "../assets/images/auth/google.png";
 import facebook from "../assets/images/auth/facebook.png";
 import whatstapp from "../assets/images/auth/what.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {toast} from 'react-toastify';
+import axios from 'axios';
+
 function Login({ setSide }) {
   let navigate = useNavigate();
+  let [selected,setSelected]=useState("Patient")
+  let [username, setUsername] = useState("");
+  let [password, setPassword] = useState("");
+
+  let [hopital,setHopital]=useState({
+    "matricule":"",
+    "password":""
+  })
+
+  let [personnel,setPersonnel]=useState({
+    "email":"",
+    "password":""
+  })
+  let host="http://localhost:8000/patient/sign-in/"
+
+  function handleClick() {
+    if (selected === "Patient") {
+      if (username !== "" && password !== "") {
+        let tempData={username,password}
+        console.log(tempData)
+        axios.post(host,tempData).then((res)=>{
+          console.log(res.data);
+          if (res.data.id.toString() !== "-1") {
+            toast.success("Bievenue vous etes desormais conecté en tant que patient")
+            navigate("/");
+          } else {
+            toast.success("Mot de passe ou  nom d'utilisateur erroné")
+          }
+        },(err)=>{
+          console.log(err)
+          toast.error("Une erreur a survenue")
+        })
+      } else {
+        toast.error("Il faut au moins remplir les champs obligatoires")
+      }
+    } else if (selected === "Hopital") {
+      if (hopital.matricule !== "" && hopital.password !== "") {
+        axios.post("http://localhost:8000/hopital/sign-in/",{
+          matricule:hopital.matricule,
+          password:hopital.password
+        }).then((res)=>{
+          console.log(res.data);
+          if (res.data.id.toString() !== "-1") {
+            toast.success("Bievenue vous etes desormais conecté au compte hopital")
+            navigate("/");
+          } else {
+            toast.success("Mot de passe ou  nom matricule (identifiant unique) erroné")
+          }
+        },(err)=>{
+          console.log(err)
+          toast.error("Une erreur a survenue")
+        })
+      } else {
+        toast.error("Svp veuillez renseigner votre matricule et votre mot de passe")
+      }
+      
+    } else {
+      if (personnel.email !== "" && personnel.password !== "") {
+        axios.post("http://localhost:8000/medecin/sign-in/",{
+          addresse_email:personnel.email,
+          password:personnel.password
+        }).then((res)=>{
+          console.log(res.data);
+          if (res.data.id.toString() !== "-1") {
+            toast.success("Bievenue vous etes desormais conecté a votre compte medecin")
+            console.log(res.data.id)
+            navigate("/");
+          } else {
+            toast.success("Mot de passe ou  nom adresse email erroné")
+          }
+        },(err)=>{
+          console.log(err)
+          toast.error("Une erreur a survenue")
+        })
+        
+      } else {
+        toast.error("s'il vous plait veuillez renseigner votre adresse email et votre mot de passe")
+      }
+    }
+    
+  }
   return (
     <div>
       <div className="flex items-center my-3 justify-center">
@@ -23,6 +108,12 @@ function Login({ setSide }) {
                 iconProps={{
                   className: "-mt-2 scale-90 -translate-x-[15px]",
                 }}
+                onChange={(e) => {
+                  setSelected(e.target.value)
+                }}
+                value="Patient"
+                checked={selected === "Patient"}
+                
               />
             }
           ></Chip>
@@ -35,7 +126,12 @@ function Login({ setSide }) {
               <Radio
                 name="type"
                 color="deep-purple"
+                value="Hopital"
                 className="w-4 h-4 -translate-x-2 -translate-y-2"
+                onChange={(e) => {
+                  setSelected(e.target.value)
+                }}
+                checked={selected === "Hopital"}
                 iconProps={{
                   className: "-mt-2 scale-90 -translate-x-[15px]",
                 }}
@@ -55,6 +151,11 @@ function Login({ setSide }) {
                 iconProps={{
                   className: "-mt-2 scale-90 -translate-x-[15px]",
                 }}
+                value="Personnel Medical"
+                onChange={(e) => {
+                  setSelected(e.target.value)
+                }}
+                checked={selected === "Personnel Medical"}
               />
             }
           ></Chip>
@@ -63,17 +164,72 @@ function Login({ setSide }) {
       <div className="flex justify-center flex-col items-center my-5">
         <h3 className="text-center mt-6 text-lg">Entrer vos informations</h3>
         <div className="w-[75%] flex flex-col space-y-5 pr-4 py-3">
-          <Input
+          {
+            selected === "Patient" ? <>
+            <Input
             label="Nom d'utilisateur ou adresse email"
             type="name"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
             color="indigo"
           ></Input>
-          <Input label="Mot de passe" type="password" color="indigo"></Input>
+          <Input
+            label="Mot de passe"
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            color="indigo"
+          ></Input>
+            </> : selected === "Hopital" ? <>
+            <Input
+            label="Indentifiant unique de l'hopital"
+            placeholder="Matricule"
+            type="name"
+            value={hopital.matricule}
+            onChange={(e) => {
+              setHopital({...hopital, matricule:e.target.value});
+            }}
+            color="indigo"
+          />
+          <Input
+            label="Mot de passe"
+            type="password"
+            value={hopital.password}
+            onChange={(e) => {
+              setHopital({...hopital, password:e.target.value});
+            }}
+            color="indigo"
+          />
+            
+            </> :  <>
+          <Input
+            label="Adresse email du medecin"
+            type="text"
+            placeholder="docteuremail@gmail.com"
+            value={personnel.email}
+            onChange={(e) => {
+              setPersonnel({...personnel, email:e.target.value});
+            }}
+            color="indigo"
+          />
+          <Input
+            label="Mot de passe"
+            type="password"
+            placeholder="*******"
+            value={personnel.password}
+            onChange={(e) => {
+              setPersonnel({...personnel, password:e.target.value});
+            }}
+            color="indigo"
+          />
+        </>}
           <Button
             color="indigo"
-            onClick={() => {
-              navigate("/");
-            }}
+            onClick={handleClick}
           >
             Envoyer
           </Button>
