@@ -14,6 +14,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import NavigationScroll from "./layout/NavigationScroll";
 import themes from "./themes";
 import NewConsultation from './pages/NewConsultation';
+import Consultation from './pages/Consultation';
 
 const Connexion = Loadable(lazy(() => import("./pages/connexion")));
 const Home = Loadable(lazy(() => import("./pages/Home")));
@@ -34,6 +35,7 @@ function App() {
               <Route path="" element={<DashboardDefault />} />
               <Route path="/dashboard" element={<DashboardDefault />} />
               <Route path="/newconsultation" element={<NewConsultation />} />
+              <Route path="/consultation" element={<Consultation />} />
             </Route>
             <Route
               path="/connexion"

@@ -32,7 +32,7 @@ const utilities = {
       id: 'util-color',
       title: 'Enregistrer un patient',
       type: 'item',
-      url: '/saveconsultation',
+      url: '/connexion',
       icon: icons.IconRegistered,
       breadcrumbs: false
     },

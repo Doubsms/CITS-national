@@ -10,6 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import {DownloadOutlined, DownloadRounded} from '@mui/icons-material';
+import {useEffect,useState} from 'react'
+import axios from 'axios';
 
 // project imports
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
@@ -48,13 +50,34 @@ const CardStyle = styled(Card)(({ theme }) => ({
 
 // ==============================|| PROFILE MENU - UPGRADE PLAN CARD ||============================== //
 
-const UpgradePlanCard = () => {
+const UpgradePlanCard = ({userData}) => {
+  
   function handleClick() {
     let link=document.createElement("a")
     link.download="Code-QR.png"
-    link.href=fileToDownload
+    axios.get("http://localhost:8000/patient/user/"+userData.user.id+"/qrcode/").then((result) => {
+    link.href=`data:application/octet-stream;base64,${result.data.image}`;
     link.click()
+    }).catch((err) => {
+      console.log(err);
+    });
+    
+    console.log(userData)
   }
+
+  let [fastdata,setFastdata]=useState(null)
+  useEffect(()=>{
+    axios.post("http://localhost:8000/medecin/1/basicInfornmations/",{
+      id:userData.user.id
+    }).then((result) => {
+      console.log(result.data)
+      setFastdata(result.data)
+    }).catch((err) => {
+      console.log(err);
+    });
+  },[]);
+
+
   return (
     <CardStyle>
       <CardContent>
@@ -74,23 +97,22 @@ const UpgradePlanCard = () => {
                 }}
               >
                 Email:
-              </span>
-              ngoufackedgard1@gmail.com <br />
+              </span> {userData && userData.user.addresse_email} <br />
               <span
                 style={{
                   fontWeight: "bolder",
                 }}
               >
                 Contact :
-              </span> 652 82 56 35 <br />
-  
+              </span>{userData && userData.user.numero} <br />
+
                           <span
                 style={{
                   fontWeight: "bolder",
                 }}
               >
                 Numero de secours :
-              </span> 698 70 36 70
+              </span> {userData && userData.user.numero}
               <br />
   
                           <span
@@ -98,8 +120,8 @@ const UpgradePlanCard = () => {
                   fontWeight: "bolder",
                 }}
               >
-                Localisation :
-              </span> Maroua palar
+                Localisation :{userData && userData.ville.name+" "+ userData.quartier.name}
+              </span> 
               <br />
   
                           <span
@@ -117,7 +139,7 @@ const UpgradePlanCard = () => {
                 }}
               >
                 Groupe sanguin :
-              </span> O Rhesus+ (O+)
+              </span> {fastdata && fastdata.groupe_sanguin} Rhesus{fastdata && fastdata.rhesus} ({fastdata && fastdata.groupe_sanguin}{fastdata && fastdata.rhesus})
               <br />
   
                           <span
@@ -126,7 +148,7 @@ const UpgradePlanCard = () => {
                 }}
               >
                 Maladie la plus courante :
-              </span> Asthme
+              </span> {fastdata && fastdata.maladies}
               <br />
   
                           <span
@@ -135,7 +157,7 @@ const UpgradePlanCard = () => {
                 }}
               >
                 Allergies:
-              </span> Polen
+              </span> {fastdata && fastdata.allergies}
               <br />
   
                           <span
@@ -144,7 +166,14 @@ const UpgradePlanCard = () => {
                 }}
               >
                 Test d"Emmel (Genotype):
-              </span> AS <br />
+              </span> {fastdata && fastdata.drepanocythose} <br />
+              <span
+                style={{
+                  fontWeight: "bolder",
+                }}
+              >
+                Traitement actuel:
+              </span> {fastdata && fastdata.traitement_actuels.split(",")[1]} <br />
               <span
                 style={{
                   fontWeight: "bolder",

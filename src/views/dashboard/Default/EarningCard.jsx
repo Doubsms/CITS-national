@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import {useSelector} from 'react-redux'
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
@@ -60,7 +61,7 @@ const EarningCard = ({ isLoading }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const userInfo = useSelector((state) => state.customization.userType);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -137,7 +138,7 @@ const EarningCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>85 patients</Typography>
+                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{userInfo !== "patient" ? `${80+Math.floor(Math.random() * 15)} patients`:`${1+Math.floor(Math.random() * 2)} consultations`}</Typography>
                   </Grid>
                   <Grid item>
                     <Avatar
@@ -161,7 +162,7 @@ const EarningCard = ({ isLoading }) => {
                     color: theme.palette.secondary[200]
                   }}
                 >
-                  Nombre total de patients devrant suivre un traitement aujourd'hui
+                  {userInfo !== "patient" ? "Nombre total de patients devrant suivre un traitement aujourd'hui":"Nombre de consultations a faire aujourd'hui" }
                 </Typography>
               </Grid>
             </Grid>

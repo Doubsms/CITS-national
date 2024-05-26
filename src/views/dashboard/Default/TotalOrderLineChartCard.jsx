@@ -4,7 +4,7 @@ import { useState } from 'react';
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
-
+import {useSelector} from 'react-redux'
 // third-party
 import Chart from 'react-apexcharts';
 
@@ -71,7 +71,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
   const handleChangeTime = (event, newValue) => {
     setTimeValue(newValue);
   };
-
+  const userInfo = useSelector((state) => state.customization.userType);
   return (
     <>
       {isLoading ? (
@@ -124,9 +124,9 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                     <Grid container alignItems="center">
                       <Grid item>
                         {timeValue ? (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>150 patients</Typography>
+                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{userInfo === "patient" ? "7 consultations":" 175 patients"}</Typography>
                         ) : (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>230 patients</Typography>
+                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{userInfo === "patient" ? "12 consultations":" 250 patients"}</Typography>
                         )}
                       </Grid>
                      
@@ -138,7 +138,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                             color: theme.palette.primary[200]
                           }}
                         >
-                          En cours de traitement
+                          { userInfo === "patient" ? "A faire" : "En cours de traitement"}
                         </Typography>
                       </Grid>
                     </Grid>

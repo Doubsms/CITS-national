@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import axios from 'axios'
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -79,10 +80,22 @@ const ProfileSection = () => {
   };
 
   const prevOpen = useRef(open);
+  const userInfoId = useSelector((state) => state.customization.userID);
+  const userInfoType = useSelector((state) => state.customization.userType);
+  let [userData,setUserData]=useState(null)
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
+    
+    if (userInfoType === "patient" ) {
+      axios.get("http://localhost:8000/patient/user/"+userInfoId+"/").then((result) => {
+        setUserData(result.data)
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
+
 
     prevOpen.current = open;
   }, [open]);
@@ -126,7 +139,7 @@ const ProfileSection = () => {
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             color="inherit">
-              {"FM"}
+              {userData !== null && `${userData.user.name.charAt(0)}${userData.user.surname.charAt(0)}`}
           </Avatar>
         }
         label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
@@ -165,10 +178,10 @@ const ProfileSection = () => {
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Bonjour,</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Flash Mac
+                          {userData && userData.user.username}
                         </Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Etudiant et Designer</Typography>
+                      <Typography variant="subtitle2">{userData && userData.user.nationalite}</Typography>
                     </Stack>
                     <OutlinedInput
                       sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
@@ -190,7 +203,7 @@ const ProfileSection = () => {
                   </Box>
                   <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                     <Box sx={{ p: 2 }}>
-                      <UpgradePlanCard />
+                      <UpgradePlanCard userData={userData && userData } />
                       <Divider />
                       <Card
                         sx={{

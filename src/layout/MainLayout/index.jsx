@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet,useNavigate } from 'react-router-dom';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
-
+import {toast} from 'react-toastify';
 // project imports
 import Breadcrumbs from '../../ui-component/extended/Breadcrumbs';
 import Header from './Header';
@@ -16,6 +16,7 @@ import { SET_MENU } from '../../store/actions';
 
 // assets
 import { IconChevronRight } from '@tabler/icons-react';
+import { useEffect } from 'react';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })(({ theme, open }) => ({
@@ -58,10 +59,20 @@ const MainLayout = () => {
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
   // Handle left drawer
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
+ 
   const dispatch = useDispatch();
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
+  const userInfo = useSelector((state) => state.customization.userID);
+  let navigate=useNavigate()
+
+  useEffect(()=>{
+    if (userInfo === null) {
+      navigate("/connexion")
+      toast.warning("Veuillez d'abord vous connectez pour aceder au tableau de bord")
+    }
+  },[])
 
   return (
     <Box sx={{ display: 'flex' }}>

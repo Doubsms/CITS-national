@@ -5,10 +5,15 @@ import whatstapp from "../assets/images/auth/what.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {toast} from 'react-toastify';
+import {useDispatch,useSelector} from 'react-redux';
+import { SET_USER_ID } from '../store/actions';
+
 import axios from 'axios';
 
 function Login({ setSide }) {
   let navigate = useNavigate();
+  let dispatch=useDispatch()
+
   let [selected,setSelected]=useState("Patient")
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
@@ -33,6 +38,7 @@ function Login({ setSide }) {
           console.log(res.data);
           if (res.data.id.toString() !== "-1") {
             toast.success("Bievenue vous etes desormais conecté en tant que patient")
+            dispatch({ type: SET_USER_ID, userID: res.data.id,userType:"patient" })
             navigate("/");
           } else {
             toast.success("Mot de passe ou  nom d'utilisateur erroné")
@@ -52,8 +58,9 @@ function Login({ setSide }) {
         }).then((res)=>{
           console.log(res.data);
           if (res.data.id.toString() !== "-1") {
-            toast.success("Bievenue vous etes desormais conecté au compte hopital")
+            dispatch({ type: SET_USER_ID, userID: res.data.id,userType:"hopital" })
             navigate("/");
+            toast.success("Bievenue vous etes desormais conecté au compte hopital")
           } else {
             toast.success("Mot de passe ou  nom matricule (identifiant unique) erroné")
           }
@@ -73,9 +80,9 @@ function Login({ setSide }) {
         }).then((res)=>{
           console.log(res.data);
           if (res.data.id.toString() !== "-1") {
-            toast.success("Bievenue vous etes desormais conecté a votre compte medecin")
-            console.log(res.data.id)
+            dispatch({ type: SET_USER_ID, userID: res.data.id,userType:"personnel" })
             navigate("/");
+            toast.success("Bievenue vous etes desormais conecté a votre compte medecin")
           } else {
             toast.success("Mot de passe ou  nom adresse email erroné")
           }
