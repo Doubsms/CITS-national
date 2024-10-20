@@ -36,7 +36,7 @@ import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
 import User1 from '../../../../assets/images/users/user-round.svg';
-
+import datajson from "../../../../db/data.json"
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
 
@@ -89,11 +89,13 @@ const ProfileSection = () => {
     }
     
     if (userInfoType === "patient" ) {
-      axios.get("http://localhost:8000/patient/user/"+userInfoId+"/").then((result) => {
-        setUserData(result.data)
-      }).catch((err) => {
-        console.log(err)
-      });
+      let dt=datajson.find((val) => val.type === "patient")
+      // axios.get("http://localhost:8000/patient/user/"+userInfoId+"/").then((result) => {
+      //   setUserData(result.data)
+      // }).catch((err) => {
+      //   console.log(err)
+      // });
+      setUserData(dt)
     }
 
 

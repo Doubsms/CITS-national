@@ -32,11 +32,20 @@ function App() {
         <NavigationScroll>
           <Routes>
             <Route path="/" element={<MainLayout />}>
+            
               <Route path="" element={<DashboardDefault />} />
               <Route path="/dashboard" element={<DashboardDefault />} />
               <Route path="/newconsultation" element={<NewConsultation />} />
               <Route path="/consultation" element={<Consultation />} />
             </Route>
+            <Route
+              path="/home"
+              element={
+                <div>
+                  <h1 className="text-3xl text-center py-5 text-blue-400 font-bold uppercase">Medical Home Page</h1>
+                </div>
+              }
+            />
             <Route
               path="/connexion"
               element={
@@ -50,7 +59,8 @@ function App() {
               path="*"
               element={
                 <div>
-                  Error page 404 
+                  <h1 className="text-3xl text-center py-5 text-red-400 font-bold uppercase">Error page 404</h1>
+                   
                 </div>
               }
             />

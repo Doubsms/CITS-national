@@ -1,0 +1,47 @@
+[
+	{
+		"type": "patient",
+		"username":"edgard",
+		"email":"ngoufackedgard1@gmail.com",
+		"password":"devit",
+		"user":{
+			"name":"Edgard",
+			"username":"Edgard Maurice",
+			"surname":"Maurice",
+			"nationalite":"Camerounaise",
+			"addresse_email":"ngoufackedgard1@gmail.com",
+			"numero":"652 82 56 35",
+			"secour":"695 90 32 41",
+			"id":1
+		},
+		"ville":{
+			"name":"Maroua"
+		},
+		"quartier":{
+			"name":"Domayo"
+		},
+		"id":1,
+		"fastdata":{
+			"groupe_sanguin":"AB",
+			"rhesus":"positif",
+			"maladies":"Paludisme",
+			"allergies":"Pollen et insectes",
+			"drepanocythose":"AS",
+			"traitement_actuels":"mal de ventre, maux de tête, mal de nerfs"
+		}
+	},
+	{
+		"type": "hopital",
+		"matricule":"21d0181ep",
+		"email":"hopitalmaroua@gmail.com",
+		"password":"marouahopital",
+		"id":2
+	},
+	{
+		"type": "personnel",
+		"username":"Devit",
+		"email":"devitedg@gmail.com",
+		"password":"medecindevit",
+		"id":3
+	}
+]

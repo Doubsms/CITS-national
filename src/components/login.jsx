@@ -7,8 +7,8 @@ import { useState } from "react";
 import {toast} from 'react-toastify';
 import {useDispatch,useSelector} from 'react-redux';
 import { SET_USER_ID } from '../store/actions';
-
 import axios from 'axios';
+import datajson from "../db/data.json";
 
 function Login({ setSide }) {
   let navigate = useNavigate();
@@ -33,40 +33,34 @@ function Login({ setSide }) {
     if (selected === "Patient") {
       if (username !== "" && password !== "") {
         let tempData={username,password}
-        console.log(tempData)
-        axios.post(host,tempData).then((res)=>{
-          console.log(res.data);
-          if (res.data.id.toString() !== "-1") {
-            toast.success("Bievenue vous etes desormais conecté en tant que patient")
-            dispatch({ type: SET_USER_ID, userID: res.data.id,userType:"patient" })
-            navigate("/");
-          } else {
-            toast.success("Mot de passe ou  nom d'utilisateur erroné")
+        datajson.forEach((element)=>{
+          if (element.type == "patient") {
+            console.log(element)
+            if (element.id.toString() !== "-1" && element.password === tempData.password && element.username == tempData.username) {
+              toast.success("Bievenue vous etes desormais conecté en tant que patient")
+              dispatch({ type: SET_USER_ID, userID: element.id,userType:"patient" })
+              navigate("/");
+            } else {
+              toast.error("Mot de passe ou  nom d'utilisateur erroné")
+            }
           }
-        },(err)=>{
-          console.log(err)
-          toast.error("Une erreur a survenue")
         })
       } else {
-        toast.error("Il faut au moins remplir les champs obligatoires")
+        toast.warning("Il faut au moins remplir les champs obligatoires")
       }
     } else if (selected === "Hopital") {
       if (hopital.matricule !== "" && hopital.password !== "") {
-        axios.post("http://localhost:8000/hopital/sign-in/",{
-          matricule:hopital.matricule,
-          password:hopital.password
-        }).then((res)=>{
-          console.log(res.data);
-          if (res.data.id.toString() !== "-1") {
-            dispatch({ type: SET_USER_ID, userID: res.data.id,userType:"hopital" })
-            navigate("/");
-            toast.success("Bievenue vous etes desormais conecté au compte hopital")
-          } else {
-            toast.success("Mot de passe ou  nom matricule (identifiant unique) erroné")
+        datajson.forEach((element)=>{
+          if (element.type == "hopital") {
+            console.log(element)
+            if (element.id.toString() !== "-1" && element.password === hopital.password && element.matricule == hopital.matricule) {
+              toast.success("Bievenue vous etes desormais conecté au compte Hopital de santé")
+              dispatch({ type: SET_USER_ID, userID: element.id,userType:"hopital" })
+              navigate("/");
+            } else {
+              toast.error("Mot de passe ou  nom matricule (identifiant unique) erroné")
+            }
           }
-        },(err)=>{
-          console.log(err)
-          toast.error("Une erreur a survenue")
         })
       } else {
         toast.error("Svp veuillez renseigner votre matricule et votre mot de passe")
@@ -74,21 +68,17 @@ function Login({ setSide }) {
       
     } else {
       if (personnel.email !== "" && personnel.password !== "") {
-        axios.post("http://localhost:8000/medecin/sign-in/",{
-          addresse_email:personnel.email,
-          password:personnel.password
-        }).then((res)=>{
-          console.log(res.data);
-          if (res.data.id.toString() !== "-1") {
-            dispatch({ type: SET_USER_ID, userID: res.data.id,userType:"personnel" })
-            navigate("/");
-            toast.success("Bievenue vous etes desormais conecté a votre compte medecin")
-          } else {
-            toast.success("Mot de passe ou  nom adresse email erroné")
+        datajson.forEach((element)=>{
+          if (element.type == "personnel") {
+            console.log(element)
+            if (element.id.toString() !== "-1" && element.password === personnel.password && personnel.email == element.email) {
+              toast.success("Bievenue vous etes desormais conecté a votre compte medecin")
+              dispatch({ type: SET_USER_ID, userID: element.id,userType:"personnel" })
+              navigate("/");
+            } else {
+              toast.error("Mot de passe ou adresse email erronée")
+            }
           }
-        },(err)=>{
-          console.log(err)
-          toast.error("Une erreur a survenue")
         })
         
       } else {

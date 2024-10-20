@@ -9,7 +9,7 @@ import LogoSection from '../LogoSection';
 import SearchSection from './SearchSection';
 import ProfileSection from './ProfileSection';
 import NotificationSection from './NotificationSection';
-
+import { useSelector } from 'react-redux';
 // assets
 import { IconMenu2 } from '@tabler/icons-react';
 
@@ -17,7 +17,7 @@ import { IconMenu2 } from '@tabler/icons-react';
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
-
+  const userInfoType = useSelector((state) => state.customization.userType);
   return (
     <>
       {/* logo & toggler button */}
@@ -59,7 +59,8 @@ const Header = ({ handleLeftDrawerToggle }) => {
       <SearchSection />
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
-
+      {userInfoType === "hopital" &&  <h1 className='font-extrabold text-lg'>HOPITAL GENERAL DE MAROUA</h1>}
+     
       {/* notification & profile */}
       <NotificationSection />
       <ProfileSection />

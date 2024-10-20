@@ -16,6 +16,8 @@ import axios from 'axios';
 // project imports
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import fileToDownload from '../../../../assets/images/logopng.png';
+import codeQRimg from '../../../../assets/images/qrpatient_1.png';
+import datajson from '../../../../db/data.json';
 
 // styles
 const CardStyle = styled(Card)(({ theme }) => ({
@@ -54,27 +56,23 @@ const UpgradePlanCard = ({userData}) => {
   
   function handleClick() {
     let link=document.createElement("a")
-    link.download="Code-QR.png"
-    axios.get("http://localhost:8000/patient/user/"+userData.user.id+"/qrcode/").then((result) => {
-    link.href=`data:application/octet-stream;base64,${result.data.image}`;
+    link.download="CodeQR_patient.png"
+    link.href=codeQRimg
     link.click()
-    }).catch((err) => {
-      console.log(err);
-    });
-    
-    console.log(userData)
   }
 
   let [fastdata,setFastdata]=useState(null)
   useEffect(()=>{
-    axios.post("http://localhost:8000/medecin/1/basicInfornmations/",{
-      id:userData.user.id
-    }).then((result) => {
-      console.log(result.data)
-      setFastdata(result.data)
-    }).catch((err) => {
-      console.log(err);
-    });
+    let dt = datajson[0].fastdata
+    setFastdata(dt)
+    // axios.post("http://localhost:8000/medecin/1/basicInfornmations/",{
+    //   id:userData.user.id
+    // }).then((result) => {
+    //   console.log(result.data)
+    //   setFastdata(result.data)
+    // }).catch((err) => {
+    //   console.log(err);
+    // });
   },[]);
 
 
@@ -112,7 +110,7 @@ const UpgradePlanCard = ({userData}) => {
                 }}
               >
                 Numero de secours :
-              </span> {userData && userData.user.numero}
+              </span> {userData && userData.user.secour}
               <br />
   
                           <span
