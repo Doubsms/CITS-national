@@ -69,8 +69,8 @@ const MainLayout = () => {
 
   useEffect(()=>{
     if (userInfo === null) {
-      navigate("/connexion")
-      toast.warning("Veuillez d'abord vous connectez pour pouvoir acceder au tableau de bord")
+      navigate("/home")
+      toast.info("Veuillez d'abord vous connectez pour pouvoir acceder au tableau de bord")
     }
   },[])
 

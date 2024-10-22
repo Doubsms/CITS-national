@@ -4,7 +4,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import MainLayout from "./layout/MainLayout";
-
+import Landing from "./pages/landing";
 import Loadable from "./ui-component/Loadable";
 import MinimalLayout from "./layout/MinimalLayout";
 import { StyledEngineProvider, CssBaseline } from "@mui/material";
@@ -18,6 +18,8 @@ import Consultation from './pages/Consultation';
 
 const Connexion = Loadable(lazy(() => import("./pages/connexion")));
 const Home = Loadable(lazy(() => import("./pages/Home")));
+const Lab = Loadable(lazy(() => import("./pages/lab")));
+
 
 const DashboardDefault = Loadable(
   lazy(() => import("./views/dashboard/Default"))
@@ -32,7 +34,6 @@ function App() {
         <NavigationScroll>
           <Routes>
             <Route path="/" element={<MainLayout />}>
-            
               <Route path="" element={<DashboardDefault />} />
               <Route path="/dashboard" element={<DashboardDefault />} />
               <Route path="/newconsultation" element={<NewConsultation />} />
@@ -41,9 +42,13 @@ function App() {
             <Route
               path="/home"
               element={
-                <div>
-                  <h1 className="text-3xl text-center py-5 text-blue-400 font-bold uppercase">Medical Home Page</h1>
-                </div>
+               <Landing />
+              }
+            />
+            <Route
+              path="/lab"
+              element={
+               <Lab />
               }
             />
             <Route
